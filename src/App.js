@@ -1,59 +1,13 @@
-const Header = ({ text }) => {
-  return <h1>{text}</h1>;
-};
+import React, { useState } from "react";
 
-const Part = ({ part }) => {
-  return (
-    <p>
-      {part.name} {part.exercises}
-    </p>
-  );
-};
-
-const Content = ({ parts }) => {
-  return (
-    <div>
-      {parts.map((part) => (
-        <Part key={part.name} part={part} />
-      ))}
-    </div>
-  );
-};
-
-const Total = ({ parts }) => {
-  let total = 0;
-  parts.forEach((part) => {
-    total += part.exercises;
-  });
-  return <p>Number of exercises {total}</p>;
-};
-
-const App = () => {
-  const course = {
-    name: "Half Stack application development - full",
-    parts: [
-      {
-        name: "Fundamentals of React",
-        exercises: 10,
-      },
-      {
-        name: "Using props to pass data",
-        exercises: 7,
-      },
-      {
-        name: "State of a component",
-        exercises: 14,
-      },
-    ],
-  };
+export default function App() {
+  const [counter, setCounter] = useState(0);
 
   return (
     <div>
-      <Header text={course.name} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <div>{counter}</div>
+      <button onClick={() => setCounter(counter + 1)}>plus</button>
+      <button onClick={() => setCounter(0)}>reset</button>
     </div>
   );
-};
-
-export default App;
+}
